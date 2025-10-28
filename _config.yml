@@ -1,0 +1,17 @@
+# GitHub Pages Jekyll Configuration
+title: Nutri Fernanda Fontanela
+description: Site da Nutricionista Fernanda Fontanela - Especialista em Emagrecimento e Saúde da Mulher
+url: https://seu-usuario.github.io
+baseurl: ""
+
+# Build settings
+markdown: kramdown
+theme: null
+plugins: []
+
+# Exclude files from processing
+exclude:
+  - .gitignore
+  - README.md
+  - fix_html.py
+  - site.zip
