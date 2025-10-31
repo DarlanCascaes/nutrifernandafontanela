@@ -602,6 +602,54 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
 					document.addEventListener( event, lazyloadRunObserver );
 				} );
 			</script>
+	        <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Seleciona todos os títulos do accordion
+    const toggleTitles = document.querySelectorAll('.elementor-tab-title');
+    
+    toggleTitles.forEach(function(title) {
+        title.addEventListener('click', function() {
+            // Pega o conteúdo relacionado
+            const tabNumber = this.getAttribute('data-tab');
+            const content = document.getElementById('elementor-tab-content-' + tabNumber.replace('tab-', ''));
+            const toggleItem = this.closest('.elementor-toggle-item');
+            
+            // Verifica se está expandido
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            
+            // Fecha todos os outros itens (opcional - remova se quiser múltiplos abertos)
+            const allTitles = document.querySelectorAll('.elementor-tab-title');
+            const allContents = document.querySelectorAll('.elementor-tab-content');
+            allTitles.forEach(function(t) {
+                t.setAttribute('aria-expanded', 'false');
+                t.classList.remove('elementor-active');
+            });
+            allContents.forEach(function(c) {
+                c.style.display = 'none';
+            });
+            
+            // Alterna o item clicado
+            if (!isExpanded) {
+                this.setAttribute('aria-expanded', 'true');
+                this.classList.add('elementor-active');
+                content.style.display = 'block';
+                toggleItem.classList.add('elementor-active');
+            } else {
+                this.setAttribute('aria-expanded', 'false');
+                this.classList.remove('elementor-active');
+                content.style.display = 'none';
+                toggleItem.classList.remove('elementor-active');
+            }
+        });
+    });
+    
+    // Fecha todos os conteúdos inicialmente
+    const allContents = document.querySelectorAll('.elementor-tab-content');
+    allContents.forEach(function(content) {
+        content.style.display = 'none';
+    });
+});
+</script>
 <script src="./js/hello-frontend.min.js" id="hello-theme-frontend-js"></script>
 <script src="./js/webpack-pro.runtime.min.js" id="elementor-pro-webpack-runtime-js"></script>
 <script src="./js/webpack.runtime.min.js" id="elementor-webpack-runtime-js"></script>
